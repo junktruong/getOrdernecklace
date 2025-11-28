@@ -371,6 +371,24 @@ document.getElementById("listBtn").addEventListener("click", async () => {
             "Email", "Address 1", "City", "State", "Zip code", "Country"
         ];
 
+        // create a copy table button
+        let copyTableButton = `
+<button id="btnCopyTable" style="
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007bff;
+    margin: 0 0 15px 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: background-color 0.3s, transform 0.1s;
+">
+    📋 Copy Table
+</button>
+`;
 
 
         // tạo nút download all images
@@ -395,6 +413,7 @@ document.getElementById("listBtn").addEventListener("click", async () => {
         // Tạo bảng HTML
         let tableHtml = `
 ${downloadImagesButton}
+${copyTableButton}
 <div style="
     overflow-x: auto; 
     border: 1px solid #ccc; 
@@ -403,7 +422,7 @@ ${downloadImagesButton}
     max-width: 100%;
     white-space: nowrap;
 ">
-    <table style="border-collapse: collapse; width: max-content;">
+    <table  id="dataOutputTable" style="border-collapse: collapse; width: max-content;">
         <thead>
             <tr>
 `;
@@ -523,6 +542,35 @@ ${downloadImagesButton}
                         filename: `image_${item.orderNumber}_${index + 1}.jpg`
                     });
                 }
+                document.getElementById("notice").innerText =
+                    "✅ Đang tải ảnh... Vui lòng kiểm tra thư mục Tải xuống (Downloads) của bạn.";
+            });
+            document.getElementById("notice").innerText =
+                " ✅ Đã tải xuống tất cả ảnh. Vui lòng kiểm tra thư mục Tải xuống (Downloads) của bạn.";
+        });
+
+        // ---- COPY TABLE BUTTON ----
+        document.getElementById("btnCopyTable").addEventListener("click", () => {
+            const table = document.getElementById("dataOutputTable");
+            if (!table) return;
+
+            let output = "";
+            const rows = table.querySelectorAll("tr");
+
+            // Start from index 1 → skip row 1
+            for (let i = 1; i < rows.length; i++) {
+                const cols = [...rows[i].querySelectorAll("th, td")].map(td =>
+                    td.innerText.replace(/\n/g, " ").trim()
+                );
+                output += cols.join("\t") + "\n";  // Tab-separated for Google Sheets
+            }
+
+            navigator.clipboard.writeText(output).then(() => {
+                document.getElementById("notice").innerText =
+                    "✅ Đã sao chép bảng vào clipboard. Vui lòng dán vào Google Sheets hoặc Excel.";
+            }).catch(err => {
+                document.getElementById("notice").innerText =
+                    "❌ Lỗi : " + (err?.message || JSON.stringify(err));
             });
         });
 
