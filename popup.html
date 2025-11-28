@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>Liệt kê ảnh</title>
+    <style>
+        /* Định nghĩa biến CSS */
+        :root {
+            --primary-color: #007bff;
+            /* Màu xanh dương chính */
+            --primary-hover: #0056b3;
+            --background-color: #f8f9fa;
+            /* Nền nhẹ */
+            --text-color: #333;
+            --border-color: #ccc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-width: 600px;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            text-align: center;
+            /* Căn giữa các thành phần cơ bản */
+        }
+
+        /* Tiêu đề */
+        h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: inline-block;
+            /* Chỉ chiếm chiều rộng nội dung */
+        }
+
+        /* Nút bấm */
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            /* Bo tròn góc */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+            /* Hiệu ứng nhấn */
+        }
+
+        /* Khu vực kết quả */
+        #result {
+            text-align: left;
+            /* Căn trái nội dung kết quả */
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: var(--shadow);
+            max-height: 600px;
+            /* Giới hạn chiều cao */
+            overflow-y: auto;
+            /* Thêm thanh cuộn khi cần */
+        }
+
+        /* Danh sách */
+        ul {
+            list-style-type: none;
+            /* Bỏ dấu chấm mặc định */
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-bottom: 1px dashed #eee;
+            /* Đường gạch dưới mờ */
+            word-break: break-all;
+            background-color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>🖼️ Tông tin Order</h3>
+    <button id="listBtn">Liệt kê Order</button>
+    <div id="result"></div>
+    <script src="popup_plus.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "List All Order and Download Images",
+    "version": "1.0",
+    "description": "Liệt kê tất cả các order (img tags) trong trang web necklace.",
+    "permissions": [
+        "downloads",
+        "scripting",
+        "tabs",
+        "activeTab"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "host_permissions": [
+        "<all_urls>"
+    ]
+}
